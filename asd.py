@@ -1,22 +1,52 @@
-from math import sqrt
+class Bird:
+    def __init__(self, name, size):
+        self.name = name
+        self.size = size
 
-message = 'Добро пожаловать в самую лучшую программу для вычисления ' \
-          'квадратного корня из заданного числа'
-print(message)
-
-
-def CalculateSquareRoot(Number):
-    """Вычисляет квадратный корень."""
-    return sqrt(Number)
+    def describe(self, full=False):
+        return f'Размер птицы {self.name} — {self.size}.'
 
 
-def calc(your_number):
-    """Функция."""
-    if your_number <= 0:
-        return
-    the_end_sqrt = CalculateSquareRoot(your_number)
-    print('Мы вычислили квадратный корень из введённого вами числа.', end=' ')
-    print(f'Это будет: {the_end_sqrt}')
+class Parrot(Bird):
+    def __init__(self, name, size, color):
+        super().__init__(name, size)
+        self.color = color
+    # Переопределите метод describe().
+
+    def describe(self, full=False):
+        if full:
+            return f'Размер птицы {self.name} — {self.size}.'
+        else:
+            return (f'Попугай {self.name} — заметная птица,'
+                    f'окрас её перьев — {self.color}, а размер — {self.size}.'
+                    f'Интересный факт: попугаи чувствуют ритм,'
+                    f'а вовсе не бездумно двигаются под музыку.'
+                    f'Если сменить композицию, то и темп движений'
+                    f' птицы изменится.')
 
 
-calc(25.5)
+class Penguin(Bird):
+    def __init__(self, name, size, genus):
+        super().__init__(name, size)
+        self.genus = genus
+    # Переопределите метод describe().
+
+    def describe(self, full=False):
+        if full:
+            return f'Размер птицы {self.name} — {self.size}.'
+        else:
+            return (f'Размер пингвина {self.name} из'
+                    f'рода {self.genus} — {self.size}.'
+                    f'Интересный факт: однажды группа'
+                    f'геологов-разведчиков похитила пингвинье яйцо,'
+                    f'и их принялась преследовать вся стая, не пытаясь,'
+                    f'впрочем, при этом нападать. Посовещавшись,'
+                    f'похитители вернули птицам яйцо, и те отстали.')
+
+
+kesha = Parrot('Ара', 'средний', 'красный')
+kowalski = Penguin('Королевский', 'большой', 'Aptenodytes')
+
+# Вызов метода у созданных объектов.
+kesha.describe()
+kowalski.describe(True)
